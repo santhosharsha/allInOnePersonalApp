@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-md-9">
+    <div class="card">
+      <div class="card-header">
+        Create Expense
+      </div>
+      <div class="card-body">
+        <!-- <form  [formGroup]="form"> -->
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <label for="inputEmail4">Expense Date</label>
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                name="dp" [(ngModel)]="expenseDate" [maxDate]="maxDate" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                          <i aria-hidden="true" class="fa fa-calendar"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputEmail4">Sub-Categories</label>
+              <select class="form-control">
+                <ng-container *ngFor="let categories of categoriesDetails">
+                  <optgroup label="{{categories?.name}}">
+                    <option class="pl-4" *ngIf="categories?.subcategories.length == 0">{{categories?.name}}</option>
+                    <option class="pl-4" *ngFor="let subcategories of categories?.subcategories">{{subcategories}}</option>
+                  </optgroup>
+                </ng-container>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputEmail4">Price</label>
+              <input type="number" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputCity">Comments</label>
+              <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" id="inputCity"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary float-right">Add to Vault</button>
+        <!-- </form> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-header">
+        Expense Details
+      </div>
+      <div class="card-body">
+        <div class="row" *ngFor="let categories of categoriesDetails">
+          <div class="col-md-8">
+            <span class="font-weight-bold text-capitalized">{{categories?.name}}</span>
+          </div>
+          <div class="col-md-4">
+            <!-- <small><i class="fas fa-plus"></i></small> -->
+            <a class="text-bold" href="#"> Rs. {{0 | number:'2.2-2'}}</a>
+            
+          </div>
+        </div>
+        <button class="btn btn-primary float-right mt-2">Create Expense</button>
+      </div>
+    </div>
+  </div>
+</div>
